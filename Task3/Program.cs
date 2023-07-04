@@ -3,26 +3,42 @@
 
 // [3.22, 4.2, 1.15, 77.15, 65.2] => 77.15 - 1.15 = 76
 
-double[] array = new double[4];
-double max = 0;
-double min = 0;
+double[] numbers = new double[4];
+FillArrayRandomNumbers(numbers);
+PrintArray(numbers);
+double min = Int32.MaxValue;
+double max = Int32.MinValue;
 
-for (int i = 0; i < array.Length; i++)
+for (int a = 0; a < numbers.Length; a++)
 {
-  array[i] = Math.Round(new Random().NextDouble()*100,2);
-
-  if(max < array[i])
+  if (numbers[a] > max)
   {
-    max = array[i];
+    max = numbers[a];
   }
-  else
+  if (numbers[a] < min)
   {
-    min = array[i];
+    min = numbers[a];
   }
 }
 
-Console.WriteLine("[" + string.Join(", ", array) + "]");
 Console.WriteLine($"Максимальный элемент массива: {max}");
 Console.WriteLine($"Минимальный элемент массива: {min}");
 Console.WriteLine($"Разница между максимальным и минимальным элементом массива, равна: {max - min}");
 
+void FillArrayRandomNumbers(double[] numbers)
+{
+ for(int i = 0; i < numbers.Length; i++)
+ {
+    numbers[i] = Convert.ToDouble(new Random().Next(100,1000)) / 100;
+ }
+}
+
+void PrintArray(double[] numbers)
+{
+  for(int i = 0; i < numbers.Length; i++)
+  {
+  Console.Write("[" + string.Join(", ", numbers) + "]");
+  break;
+  }
+  Console.WriteLine();
+}
